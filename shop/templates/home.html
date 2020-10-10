@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static custom_tags%}
-{% block title %} پارسی پروژه {% endblock %}
+{% block title %} بایران {% endblock %}
 {% block content %}
 
     <!--slider area start-->
@@ -162,106 +162,7 @@
     <!--banner area end-->
 
     <!--home section bg area start-->
-    <div class="home_section_bg">
-        <!--Categories product area start-->
-        <div class="categories_product_area mb-55">
-            <div class="container">
-                <div class="categories_product_inner">
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> موبایل و تبلت</a></h4>
-                            <p>12 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category1.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> کامپیوتر</a></h4>
-                            <p>24 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category2.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> مد و زیبایی</a></h4>
-                            <p>22 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category3.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> عینک آفتابی</a></h4>
-                            <p>6 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category4.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> کودک و نوزاد</a></h4>
-                            <p>20 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category5.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> لوازم جانبی</a></h4>
-                            <p>4 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category6.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> موبایل و تبلت</a></h4>
-                            <p>12 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category7.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> لوازم جانبی</a></h4>
-                            <p>12 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category8.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> موبایل و تبلت</a></h4>
-                            <p>12 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category9.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="single_categories_product">
-                        <div class="categories_product_content">
-                            <h4><a href="shop.html"> کودک و نوزاد</a></h4>
-                            <p>12 محصول</p>
-                        </div>
-                        <div class="categories_product_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/s-product/category10.jpg' %}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Categories product area end-->
-
+    <div class="home_section_bg">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         <!--product area start-->
         <div class="product_area">
             <div class="container">
@@ -278,38 +179,40 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="Computer3" role="tabpanel">
                         <div class="product_carousel product_style product_column5 owl-carousel">
+                            {% for product in product_list.all|slice:":12" %}
                             <article class="single_product">
                                 <figure>
 
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img src="{% static 'assets/img/product/product16.jpg' %}" alt=""></a>
-                                        <a class="secondary_img" href="product-details.html"><img src="{% static 'assets/img/product/product17.jpg' %}" alt=""></a>
-                                        <div class="label_product">
-                                            <span class="label_sale">فروش</span>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه‌مندی‌ها"><i class="ion-android-favorite-outline"></i></a></li>
-                                                <li class="compare"><a href="#" title="افزودن به مقایسه"><i class="ion-ios-settings-strong"></i></a></li>
-                                                <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="مشاهده سریع"><i class="ion-ios-search-strong"></i></a></li>
-                                            </ul>
-                                        </div>
+                                        <a class="primary_img" href="{{ product.get_absolute_url }}"><img src="{{ product.pic.url }}" alt="{{ product.alt }}"></a>
+                                    </div>
+                                    <div class="label_product">
+                                        <span class="label_sale">فروش</span>
                                     </div>
                                     <div class="product_content">
                                         <div class="product_content_inner">
-                                            <h4 class="product_name"><a href="product-details.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت</a></h4>
+                                            <h4 class="product_name"><a href="{{ product.get_absolute_url }}">{% my_slice product.title %}</a></h4>
                                             <div class="price_box">
-                                                <span class="old_price">80,000 تومان</span>
-                                                <span class="current_price">70,000 تومان</span>
+                                                {% if product.has_discount %}
+                                                <span class="old_price">{{ product.price }} تومان</span>
+                                                <span class="current_price">{{ product.super_price }} تومان</span>
+                                                {% else %}
+                                                <span class="current_price">{{ product.price }} تومان</span>
+
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="add_to_cart">
-                                            <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
+                                            <form action="{% url 'cart_add' product.id %}" method="post">
+                                                {{ cart_product_from }}
+                                                {% csrf_token %}
+                                                <input class="add-to-cart-link" type="submit" value="افزودن به سبد"/>
+                                            </form>
                                         </div>
-
                                     </div>
                                 </figure>
                             </article>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -334,38 +237,40 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="Clothing4" role="tabpanel">
                         <div class="product_carousel product_style product_column5 owl-carousel">
+                            {% for product in product_list.all|slice:":12" %}
                             <article class="single_product">
                                 <figure>
 
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img src="{% static 'assets/img/product/product29.jpg' %}" alt=""></a>
-                                        <a class="secondary_img" href="product-details.html"><img src="{% static 'assets/img/product/product28.jpg' %}" alt=""></a>
-                                        <div class="label_product">
-                                            <span class="label_sale">فروش</span>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه‌مندی‌ها"><i class="ion-android-favorite-outline"></i></a></li>
-                                                <li class="compare"><a href="#" title="افزودن به مقایسه"><i class="ion-ios-settings-strong"></i></a></li>
-                                                <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="مشاهده سریع"><i class="ion-ios-search-strong"></i></a></li>
-                                            </ul>
-                                        </div>
+                                        <a class="primary_img" href="{{ product.get_absolute_url }}"><img src="{{ product.pic.url }}" alt="{{ product.alt }}"></a>
+                                    </div>
+                                    <div class="label_product">
+                                        <span class="label_sale">فروش</span>
                                     </div>
                                     <div class="product_content">
                                         <div class="product_content_inner">
-                                            <h4 class="product_name"><a href="product-details.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</a></h4>
+                                            <h4 class="product_name"><a href="{{ product.get_absolute_url }}">{% my_slice product.title %}</a></h4>
                                             <div class="price_box">
-                                                <span class="old_price">72,000 تومان</span>
-                                                <span class="current_price">70,000 تومان</span>
+                                                {% if product.has_discount %}
+                                                <span class="old_price">{{ product.price }} تومان</span>
+                                                <span class="current_price">{{ product.super_price }} تومان</span>
+                                                {% else %}
+                                                <span class="current_price">{{ product.price }} تومان</span>
+
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="add_to_cart">
-                                            <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
+                                            <form action="{% url 'cart_add' product.id %}" method="post">
+                                                {{ cart_product_from }}
+                                                {% csrf_token %}
+                                                <input class="add-to-cart-link" type="submit" value="افزودن به سبد"/>
+                                            </form>
                                         </div>
-
                                     </div>
                                 </figure>
                             </article>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -389,37 +294,40 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="Computer5" role="tabpanel">
                         <div class="product_carousel product_style product_column5 owl-carousel">
+                            {% for product in product_list.all|slice:":12" %}
                             <article class="single_product">
                                 <figure>
+
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img src="{% static 'assets/img/product/product19.jpg' %}" alt=""></a>
-                                        <a class="secondary_img" href="product-details.html"><img src="{% static 'assets/img/product/product20.jpg' %}" alt=""></a>
-                                        <div class="label_product">
-                                            <span class="label_sale">فروش</span>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه‌مندی‌ها"><i class="ion-android-favorite-outline"></i></a></li>
-                                                <li class="compare"><a href="#" title="افزودن به مقایسه"><i class="ion-ios-settings-strong"></i></a></li>
-                                                <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="مشاهده سریع"><i class="ion-ios-search-strong"></i></a></li>
-                                            </ul>
-                                        </div>
+                                        <a class="primary_img" href="{{ product.get_absolute_url }}"><img src="{{ product.pic.url }}" alt="{{ product.alt }}"></a>
+                                    </div>
+                                    <div class="label_product">
+                                        <span class="label_sale">فروش</span>
                                     </div>
                                     <div class="product_content">
                                         <div class="product_content_inner">
-                                            <h4 class="product_name"><a href="product-details.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</a></h4>
+                                            <h4 class="product_name"><a href="{{ product.get_absolute_url }}">{% my_slice product.title %}</a></h4>
                                             <div class="price_box">
-                                                <span class="old_price">76,000 تومان</span>
-                                                <span class="current_price">75,000 تومان</span>
+                                                {% if product.has_discount %}
+                                                <span class="old_price">{{ product.price }} تومان</span>
+                                                <span class="current_price">{{ product.super_price }} تومان</span>
+                                                {% else %}
+                                                <span class="current_price">{{ product.price }} تومان</span>
+
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="add_to_cart">
-                                            <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
+                                            <form action="{% url 'cart_add' product.id %}" method="post">
+                                                {{ cart_product_from }}
+                                                {% csrf_token %}
+                                                <input class="add-to-cart-link" type="submit" value="افزودن به سبد"/>
+                                            </form>
                                         </div>
-
                                     </div>
                                 </figure>
                             </article>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

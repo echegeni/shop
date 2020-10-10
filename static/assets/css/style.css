@@ -10359,3 +10359,21 @@ textarea:-ms-input-placeholder {
 	background: #222222;
 	color: #ffffff;
 }
+
+input[type=submit] {
+    border: 2px solid #ebebeb;
+    height: 45px;
+    line-height: 41px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 4px;
+    max-width: 220px;
+    width: 100%;
+}
+
+input[type=submit]:hover{
+	background: #c40316;
+	background-color: #c40316;
+	color: #ffffff;
+}
