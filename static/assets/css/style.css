@@ -10377,3 +10377,13 @@ input[type=submit]:hover{
 	background-color: #c40316;
 	color: #ffffff;
 }
+.bt_add_to_cart{
+    border: 0!important;
+    font-size: 16px!important;
+    margin-right: 20px!important;
+    background: #c40316!important;
+    height: 42px!important;
+    line-height: 42px!important;
+	min-width: 270px!important;
+	color: #ffffff!important;
+}
