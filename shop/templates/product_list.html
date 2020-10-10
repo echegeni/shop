@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static custom_tags%}
+{% block title %} پارسی پروژه - محصولات {% endblock %}
+{% block content %}
+
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>فروشگاه</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom">
+
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for product in product_list %}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-shop-product">
+                            <div class="product-upper">
+                                <a href="{{ product.get_absolute_url }}">
+                                <img src="{{ product.pic.url }}" alt="{{ product.alt }}" width="190">
+                                </a>
+                            </div>
+                            <div class="product-carousel-title">
+                                <a href="{{ product.get_absolute_url }}">{% my_slice product.title %}</a>
+                            </div>
+                            <div class="product-carousel-price">
+                                {% if product.has_discount %}
+                                    {% if product.super_price == 0 %}
+                                        <ins>رایگان</ins>
+                                        <del>{{ product.price }}تومان</del>
+                                        {% else %}
+                                    <ins>{{ product.super_price }}تومان</ins>
+                                    <del>{{ product.price }}تومان</del>
+                                        {% endif %}
+                                    {% else %}
+                                    {% if product.price == 0 %}
+                                        <ins>رایگان</ins>
+                                        {% else %}
+                                        <ins>{{ product.price }}تومان</ins>
+                                     {% endif %}
+                                {% endif %}
+                            </div>
+
+                            <div class="product-option-shop">
+                                 <form action="{% url 'cart_add' product.id %}" method="post">
+                                        {{ cart_product_from }}
+                                        {% csrf_token %}
+                                        <input type="submit" value="افزودن به سبد خرید"/>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-pagination text-center">
+                        <nav>
+                          {% if is_paginated %}
+                              <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                  <li><a href="?page={{ page_obj.previous_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                  <li class="disabled"><span>&raquo;</span></li>
+                                {% endif %}
+                                {% for i in paginator.page_range %}
+                                  {% if page_obj.number == i %}
+                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                  {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                  {% endif %}
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                  <li><a href="?page={{ page_obj.next_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                  <li class="disabled"><span>&laquo;</span></li>
+                                {% endif %}
+                              </ul>
+                            {% endif %}
+                        </nav>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

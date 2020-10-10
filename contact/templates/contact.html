@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} پارسی پروژه - تماس با ما {% endblock %}
+{% block content %}
+ <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>ارتباط با ما</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row contact-form">
+        {% if new_contact %}
+            <h3 class="new-contact">پیام شما با موفقیت ثبت شد، در اولین فرصت بررسی میکنیم.</h3>
+        {% else %}
+            <h2>جهت ارتباط با ما از فرم زیر استفاده کنید:</h2>
+            {{ form.non_field_errors }}
+            <form action="." method="post">
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                {% csrf_token %}
+                <input type="submit" value="ارسال">
+            </form>
+        {% endif %}                  
+        </div>
+    </div>
+{% endblock %}

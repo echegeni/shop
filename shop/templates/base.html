@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="fa" dir="rtl">
+
+<head>
+  {% include "header.html" %}
+</head>
+
+<body>
+
+    <!--Offcanvas menu area start-->
+{% include "nav.html"%}
+    <!--header area end-->
+    {% block content %} 
+    {% endblock content %}
+
+    {% include "footer.html"%} 
+
+
+
+</body>
+
+</html>
