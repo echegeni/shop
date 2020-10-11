@@ -82,6 +82,7 @@ class City(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
     slug = models.SlugField(max_length=100, unique=True, allow_unicode=True, verbose_name="اسلاگ")
+    decsription = models.CharField(max_length=300,verbose_name="مختصر توضیحات")
     content = models.TextField(verbose_name="توضیحات")
     publish_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ انتشار")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="نویسنده")
