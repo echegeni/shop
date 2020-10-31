@@ -1,5 +1,4 @@
 from django import template
-
 register = template.Library()
 
 
@@ -9,3 +8,5 @@ def my_slice(input):
         return input[0:30] + "..."
     else:
         return input
+
+

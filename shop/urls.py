@@ -12,8 +12,9 @@ if settings.DEBUG:
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
-    path('shop/', views.ProductList.as_view(), name='product'),
-    path('shop/<str:slug>/', views.AuthorDetail.as_view(), name='product-detail'),
+    path('product/', views.ProductList.as_view(), name='product'),
+    path('product/<str:slug>/', views.AuthorDetail.as_view(), name='product-detail'),
+    path('shop/<str:slug>/', views.ShopproductList.as_view(), name='shop_detail'),
     path('cart/', views.cart_detail, name='cart_detail'),
     path('cart/add/<int:product_id>', views.cart_add, name='cart_add'),
     path('cart/update/<int:product_id>', views.cart_update, name='cart_update'),

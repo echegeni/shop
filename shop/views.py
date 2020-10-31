@@ -14,7 +14,7 @@ from django.views.generic import (
 from django.views.generic.edit import FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.utils.encoding import uri_to_iri
-from .models import Product, OrderItem, Order, Category
+from .models import Product, OrderItem, Order, Category,Shop_name
 from django.views.generic.base import ContextMixin
 from django.views.decorators.http import require_POST
 from . import forms
@@ -64,6 +64,16 @@ class ProductList(FormContextMixin, ListView):
     template_name = 'product_list.html'
     paginate_by = 12
     queryset = Product.objects.all()
+    
+class ShopproductList(FormContextMixin, ListView):
+    model = Product
+    template_name = 'shop_detail.html'
+    paginate_by = 12
+    queryset = Shop_name.objects.all()
+    def get_object(self, **kwargs):
+        slug = self.kwargs.get('slug')
+        return get_object_or_404(Shop_name, slug=uri_to_iri(slug))
+
 
 
 class ProductDisplay(FormContextMixin, DetailView):

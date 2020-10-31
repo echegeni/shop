@@ -2,21 +2,44 @@
 {% load static %}
 {% block title %} پارسی پروژه - ثبت نام {% endblock %}
 {% block content %}
- <div class="product-big-title-area">
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>ثبت نام</h2>
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="index.html">خانه</a></li>
+                            <li>حساب کاربری</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<form action="." method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="ثبت نام">
-</form>
+    <!--breadcrumbs area end-->
+
+    <!-- customer login start -->
+    <div class="login_page_bg">
+        <div class="container">
+            <div class="customer_login">
+                <div class="row">
+                    <!--login area start-->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="account_form login">
+                            <h2>ثبت نام</h2>
+                            <form action="." method="post">
+                               {% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit" value="ثبت نام">
+                            </form>
+                        </div>
+                    </div>
+                    <!--login area start-->
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}

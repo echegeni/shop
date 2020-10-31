@@ -78,11 +78,27 @@ class City(models.Model):
         verbose_name = 'شهر'
         verbose_name_plural = 'شهر ها'
 
+class Shop_name(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name="عنوان فروشگاه")
+    descriptions = models.CharField(verbose_name=("درباره فروشگاه"), max_length=500)
+    slug = models.SlugField(max_length=100, unique=True, allow_unicode=True, verbose_name="اسلاگ")
+    products = models.ManyToManyField("shop.Product", verbose_name=("محصولات"),null=True)
+
+    class Meta:
+        verbose_name = ( "فروشگاه")
+        verbose_name_plural = ( "فروشگاه ها")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse( "shop_detail", args=[self.slug])
 
 class Product(models.Model):
     title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
     slug = models.SlugField(max_length=100, unique=True, allow_unicode=True, verbose_name="اسلاگ")
     decsription = models.CharField(max_length=300,verbose_name="مختصر توضیحات")
+    shop = models.ForeignKey("shop.Shop_name", verbose_name=("فروشگاه"), on_delete=models.CASCADE,null=True)
     content = models.TextField(verbose_name="توضیحات")
     publish_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ انتشار")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="نویسنده")

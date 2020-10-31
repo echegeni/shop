@@ -2,29 +2,62 @@
 {% load static %}
 {% block title %} پارسی پروژه - ورود {% endblock %}
 {% block content %}
-     <div class="product-big-title-area">
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>ورود</h2>
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="index.html">خانه</a></li>
+                            <li>حساب کاربری</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <form method="POST">
-        {% csrf_token %}
-        <p>
-            <label>نام کاربری</label>
-            <input type="text" name="username">
-        </p>
-        <p>
-            <label>رمز عبور</label>
-            <input type="password" name="password">
-        </p>
-        <button type="submit">ورود</button>
-    </form>
-    <br />
-    <a href="{% url 'register' %}">ثبت نام</a>
+    <!--breadcrumbs area end-->
+
+    <!-- customer login start -->
+    <div class="login_page_bg">
+        <div class="container">
+            <div class="customer_login">
+                <div class="row">
+                    <!--login area start-->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="account_form login">
+                            <h2>ورود</h2>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <p>
+                                    <label>نام کاربری یا ایمیل <span>*</span></label>
+                                    <input type="text" dir="ltr">
+                                </p>
+                                <p>
+                                    <label>رمز عبور <span>*</span></label>
+									<input type="password" dir="ltr">
+                                </p>
+                                <div class="login_submit">
+                                    <label for="remember">
+                                        <input id="remember" type="checkbox">
+                                        به خاطر سپاری
+                                    </label>
+                                    <button type="submit">ورود</button>
+
+                                </div>
+
+                            </form>
+                            <br />
+                            <a href="{% url 'register' %}">ثبت نام</a>
+
+                        </div>
+                    </div>
+                    <!--login area start-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
