@@ -3,17 +3,6 @@
 {% block title %} پارسی پروژه - سبد خرید {% endblock %}
 {% block content %}
     
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>سبد خرید</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End Page title area -->
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
@@ -81,11 +70,6 @@
 
                                         <tr>
                                             <td class="actions" colspan="6">
-                                                <div class="coupon">
-                                                    <label for="coupon_code">کد تخفیف:</label>
-                                                    <input type="text" placeholder="کد تخفیف" value="" id="coupon_code" class="input-text" name="coupon_code">
-                                                    <input type="submit" value="اعمال  کد تخفیف" name="apply_coupon" class="button">
-                                                </div>
                                                 <!--<input type="submit" value="Update Cart" name="update_cart" class="button">-->
                                                 <a href="{% url 'checkout' %}"  class="checkout-button wc-forward">تکمیل خرید</a>
                                             </td>
@@ -126,4 +110,104 @@
             {% endif %}
         </div>
     </div>
+
+        <!--shopping cart area start -->
+    <div class="cart_page_bg">
+        <div class="container">
+            <div class="shopping_cart_area">
+                {% if cart|length == 0 %}
+                    <div>
+                        <h3>سبد خرید خالی است!</h3>
+                        <br />
+                        <a class="btn btn-primary" href="{% url 'product' %}">بازگشت به لیست محصولات</a>
+                    </div>
+                {% else %}
+
+                <form action="#">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table_desc">
+                                <div class="cart_page table-responsive">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="product_remove">حذف</th>
+                                                <th class="product_thumb">تصویر</th>
+                                                <th class="product_name">محصول</th>
+                                                <th class="product-price">قیمت</th>
+                                                <th class="product_quantity">تعداد</th>
+                                                <th class="product_total">جمع</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for item in cart %}
+                                            {% with product=item.product %}
+                                            <tr>
+                                                <td class="product_remove"><a href="{% url 'cart_remove' product.id %}"><i class="fa fa-trash-o"></i></a></td>
+                                                <td class="product_thumb"><a href="{{ product.get_absolute_url }}"><img src="{{ product.get_absolute_url }}" alt=""></a></td>
+                                                <td class="product_name"><a href="#">{{ product.title }}</a></td>
+                                                <td class="product-price">{{ item.price }} تومان</td>
+                                                <td class="product_quantity"><label>تعداد</label> <input min="1" max="100" value="1" type="number"></td>
+                                                <td class="product_total">{{ item.total_price }} تومان</td>
+
+
+                                            </tr>
+                                            {% endwith %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="cart_submit">
+                                    <button type="submit">به روز رسانی سبد</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--coupon code area start-->
+                    <div class="coupon_area">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="coupon_code left">
+                                    <h3>کد تخفیف</h3>
+                                    <div class="coupon_inner">
+                                        <p>کد تخفیف خود را در صورت وجود وارد نمایید</p>
+                                        <input placeholder="کد تخفیف" type="text">
+                                        <button type="submit">اعمال کد تخفیف</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="coupon_code right">
+                                    <h3>مجموع سبد</h3>
+                                    <div class="coupon_inner">
+                                        <div class="cart_subtotal">
+                                            <p>جمع جزء</p>
+                                            <p class="cart_amount">342,000 تومان</p>
+                                        </div>
+                                        <div class="cart_subtotal">
+                                            <p>حمل و نقل</p>
+                                            <p class="cart_amount">20,000 تومان</p>
+                                        </div>
+                                        <a href="#">محاسبه هزینه</a>
+
+                                        <div class="cart_subtotal has-border">
+                                            <p>جمع</p>
+                                            <p class="cart_amount">362,000 تومان</p>
+                                        </div>
+                                        <div class="checkout_btn">
+                                            <a href="#">پرداخت</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--coupon code area end-->
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!--shopping cart area end -->
+
 {% endblock %}

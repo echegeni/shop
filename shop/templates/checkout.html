@@ -2,98 +2,6 @@
     {% load static %}
     {% block title %} پارسی پروژه - ثبت اطلاعات سفارش {% endblock %}
     {% block content %}
-
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>تکمیل سفارش</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="product-content-right">
-                        <div class="woocommerce">
-
-                          {{ form.non_field_errors }}
-                          <form action="." method="post">
-                              {% for field in form %}
-                                  <div class="form-group">
-                                      {{ field.label_tag }}
-                                      {{ field }}
-                                      {{ field.errors }}
-                                  </div>
-                              {% endfor %}
-                              {% csrf_token %}
-                              <input type="submit" value="ارسال">
-                          </form>
-
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-md-8">
-                      <h3 id="order_review_heading">سفارش شما</h3>
-
-                                <div id="order_review" style="position: relative;">
-                                    <table class="shop_table">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-name">محصول</th>
-                                                <th class="product-total">مجموع</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for item in cart %}
-                                            <tr class="cart_item">
-                                                <td class="product-name">
-                                                    {{ item.product.title }} <strong class="product-quantity">× {{ item.count }}</strong> </td>
-                                                <td class="product-total">
-                                                    <span class="amount">${{ item.total_price }}</span> </td>
-                                            </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                        <tfoot>
-
-                                            <tr class="cart-subtotal">
-                                                <th>مجموع سبد خرید</th>
-                                                <td><span class="amount">${{ cart.get_total_price }}</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="shipping">
-                                                <th>خدمات پشتیبانی</th>
-                                                <td>
-
-                                                    رایگان
-
-                                                </td>
-                                            </tr>
-
-
-                                            <tr class="order-total">
-                                                <th>مجموع سفارش</th>
-                                                <td><strong><span class="amount">${{ cart.get_total_price }}</span></strong> </td>
-                                            </tr>
-
-                                        </tfoot>
-                                    </table>
-
-
-
-                                </div>
-                 </div>
-            </div>
-        </div>
-    </div>
     <!--Checkout page section-->
     <div class="checkout_page_bg">
         <div class="container">
@@ -102,145 +10,18 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="checkout_form_left">
-                                <form action="#">
-                                    <h3>جزئیات پرداخت</h3>
-                                    <div class="row">
-
-                                        <div class="col-lg-6 mb-20">
-                                            <label>نام <span>*</span></label>
-                                            <input type="text">
+                                <h3>تکمیل سفارش</h3>
+                                {{ form.non_field_errors }}
+                                <form action="." method="post">
+                                    {% for field in form %}
+                                        <div class="form-group">
+                                            {{ field.label_tag }}
+                                            {{ field }}
+                                            {{ field.errors }}
                                         </div>
-                                        <div class="col-lg-6 mb-20">
-                                            <label>نام خانوادگی <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>نام شرکت</label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label for="country">کشور <span>*</span></label>
-                                            <select class="niceselect_option" name="cuntry" id="country">
-                                                <option value="2">ایران</option>
-                                                <option value="3">آمریکا</option>
-                                                <option value="4">آلمان</option>
-                                                <option value="5">ترکیه</option>
-                                                <option value="6">ایتالیا</option>
-                                                <option value="7">بحرین</option>
-                                                <option value="8">اسپانیا</option>
-                                                <option value="9">فرانسه</option>
-
-                                            </select>
-                                        </div>
-
-                                        <div class="col-12 mb-20">
-                                            <label>آدرس خیابان <span>*</span></label>
-											<input placeholder="نام خیابان و پلاک منزل" type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-											<input placeholder="نام آپارتمان، واحد و ... (اختیاری)" type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>شهر / شهرستان <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>استان <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-lg-6 mb-20">
-                                            <label>تلفن <span>*</span></label>
-											<input type="text" dir="ltr">
-
-                                        </div>
-                                        <div class="col-lg-6 mb-20">
-                                            <label>آدرس ایمیل <span>*</span></label>
-											<input type="email" dir="ltr">
-
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">
-												<input type="checkbox"> ساخت حساب کاربری؟
-                                            </label>
-
-                                            <div id="collapseOne" class="collapse one">
-                                                <div class="card-body1">
-                                                    <label> رمز عبور <span>*</span></label>
-													<input placeholder="رمز عبور" type="password" dir="ltr">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 mb-20">
-											<label data-toggle="collapse" data-target="#collapsetwo" aria-controls="collapsetwo">
-												<input type="checkbox"> ارسال به آدرسی دیگر؟
-                                            </label>
-
-                                            <div id="collapsetwo" class="collapse one">
-                                                <div class="row">
-                                                    <div class="col-lg-6 mb-20">
-                                                        <label>نام <span>*</span></label>
-                                                        <input type="text">
-                                                    </div>
-                                                    <div class="col-lg-6 mb-20">
-                                                        <label>نام خانوادگی <span>*</span></label>
-                                                        <input type="text">
-                                                    </div>
-                                                    <div class="col-12 mb-20">
-                                                        <label>نام شرکت</label>
-                                                        <input type="text">
-                                                    </div>
-                                                    <div class="col-12 mb-20">
-                                                        <div class="select_form_select">
-                                                            <label for="countru_name">کشور <span>*</span></label>
-                                                            <select class="niceselect_option" name="cuntry" id="countru_name">
-                                                                <option value="2">ایران</option>
-                                                                <option value="3">آمریکا</option>
-                                                                <option value="4">آلمان</option>
-                                                                <option value="5">ترکیه</option>
-                                                                <option value="6">ایتالیا</option>
-                                                                <option value="7">بحرین</option>
-                                                                <option value="8">اسپانیا</option>
-                                                                <option value="9">فرانسه</option>
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-12 mb-20">
-                                                        <label>آدرس خیابان <span>*</span></label>
-														<input placeholder="نام خیابان و پلاک منزل" type="text">
-                                                    </div>
-                                                    <div class="col-12 mb-20">
-														<input placeholder="نام آپارتمان، واحد و ... (اختیاری)" type="text">
-                                                    </div>
-                                                    <div class="col-12 mb-20">
-                                                        <label>شهر / شهرستان <span>*</span></label>
-                                                        <input type="text">
-                                                    </div>
-                                                    <div class="col-12 mb-20">
-                                                        <label>استان <span>*</span></label>
-                                                        <input type="text">
-                                                    </div>
-                                                    <div class="col-lg-6 mb-20">
-                                                        <label>تلفن <span>*</span></label>
-														<input type="text" dir="ltr">
-
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <label>آدرس ایمیل <span>*</span></label>
-														<input type="email" dir="ltr">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="order-notes">
-                                                <label for="order_note">توضیحات سفارش</label>
-												<textarea id="order_note" placeholder="یادداشت های مربوط به سفارش، مانند توضیح نحوه ارسال."></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
+                                    {% csrf_token %}
+                                    <input type="submit" value="ارسال" class="bt_add_to_cart" style="text-align: center;">
                                 </form>
                             </div>
                         </div>
@@ -257,27 +38,17 @@
 												</tr>
 											</thead>
 											<tbody>
+                                                {% for item in cart %}
 												<tr>
-													<td><span class="d-inline-block">گوشی موبایل Xiaomi Mi 9</span> <strong>× 2</strong></td>
-													<td>165,000 تومان</td>
+													<td><span class="d-inline-block">{{ item.product.title }}</span> <strong>× {{ item.count }}</strong></td>
+													<td>{{ item.total_price }} تومان</td>
 												</tr>
-												<tr>
-													<td><span class="d-inline-block">هندزفری بیسیم Sony</span> <strong>× 2</strong></td>
-													<td>50,000 تومان</td>
-												</tr>
-												<tr>
-													<td><span class="d-inline-block">مانیتور گیمینگ Asus MP28Q</span> <strong>× 2</strong></td>
-													<td>50,000 تومان</td>
-												</tr>
-												<tr>
-													<td><span class="d-inline-block">کفش ورزشی Nike</span> <strong>× 1</strong></td>
-													<td>50,000 تومان</td>
-												</tr>
+                                                {% endfor %}
 											</tbody>
 											<tfoot>
 												<tr>
 													<th>جمع سبد</th>
-													<td>215,000 تومان</td>
+													<td>{{ cart.get_total_price }} تومان</td>
 												</tr>
 												<tr>
 													<th>حمل و نقل</th>
@@ -285,37 +56,10 @@
 												</tr>
 												<tr class="order_total">
 													<th>مجموع سفارش</th>
-													<td><strong>220,000 تومان</strong></td>
+													<td><strong>{{ cart.get_total_price }} تومان</strong></td>
 												</tr>
 											</tfoot>
 										</table>
-                                    </div>
-									<div class="payment_method" id="accordion">
-                                        <div class="panel-default">
-                                            <label data-toggle="collapse" data-target="#method" aria-controls="method">
-												<input name="check_method" type="radio" checked> پرداخت نقدی
-                                            </label>
-
-											<div id="method" class="collapse show one" data-parent="#accordion">
-                                                <div class="card-body1">
-                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel-default">
-                                            <label data-toggle="collapse" data-target="#collapsedefult" aria-controls="collapsedefult">
-												<input name="check_method" type="radio"> پرداخت آنلاین <img src="assets/img/icon/papyel.png" alt="">
-                                            </label>
-
-                                            <div id="collapsedefult" class="collapse one" data-parent="#accordion">
-                                                <div class="card-body1">
-                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="order_button">
-                                            <button type="submit">ادامه پرداخت</button>
-                                        </div>
                                     </div>
                                 </form>
                             </div>
