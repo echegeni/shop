@@ -84,11 +84,31 @@
                                         </ul>
                                     </div>
                                     <div class="product_variant quantity">
-                                        <form action="{% url 'cart_add' product.id %}" method="post" enctype="multipart/form-data">
-                                        {{ cart_product_from }}
-                                        {% csrf_token %}
-                                        <input type="submit" class="bt_add_to_cart" value="افزودن به سبد خريد"/>
+                                        <form action="{% url 'cart_add' product.id %}" method="post" >
+                                            {{ cart_product_from }}
+                                            {% csrf_token %}
                                         </form>
+                                    <div class="single-product-area">
+                                        <div class="zigzag-bottom"></div>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="product-content-right">
+                                                            <div class="row">
+                                                                <!--Add to cart-->
+                                                                <form action="{% url 'cart_add' product.id %}" method="post">
+                                                                    {{ cart_product_from }}
+                                                                    {% csrf_token %}
+                                                                    <input type="submit" class="bt_add_to_cart" value="افزودن به سبد خريد"/>
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="product_meta">
                                     {% if product.category.all %}
