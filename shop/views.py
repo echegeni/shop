@@ -158,7 +158,7 @@ CallbackURL = 'http://parsiprozhe.ir/callback/'
 
 def to_bank(request, order_id):
     order = get_object_or_404(Order, random_order_id=order_id)
-    description = "خرید فایل از پارسی پروژه"  # Required
+    description = "خرید فایل از بایران"  # Required
     email = order.email
     mobile = order.mobile
     order_items = OrderItem.objects.filter(order=order)

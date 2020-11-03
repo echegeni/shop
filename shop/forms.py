@@ -37,7 +37,7 @@ class OrderCheckoutForm(forms.ModelForm):
             'family': 'نام خانوادگی',
             'mobile': 'موبایل',
             'email': 'ایمیل',
-            'is_accept_agreement': 'با قوانین پارسی پروژه موافقم'
+            'is_accept_agreement': 'با قوانین بایران موافقم'
         }
         widgets = {
             'name': forms.TextInput(attrs=attr),
