@@ -1890,6 +1890,7 @@ textarea:-ms-input-placeholder {
 	width: 100%;
 	border-top: 2px solid #ebebeb;
 	border-left: 2px solid #ebebeb;
+	border-right: 2px solid #ebebeb;
 	border-bottom: 2px solid #ebebeb;
 	border-radius: 5px 0 0 5px;
 }

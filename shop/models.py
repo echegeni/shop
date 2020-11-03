@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from . import helper
 from django.urls import reverse
-
+from mptt.models import MPTTModel, TreeForeignKey
 
 class Category(models.Model):
     title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
@@ -285,3 +285,4 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'نظر'
         verbose_name_plural = 'نظرات'
+

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} بایران - جزئیات محصول{% endblock %}
+{% block title %} بایران - جزئیات محصول {{ product.title }}{% endblock %}
 {% block content %}
     <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
@@ -10,7 +10,8 @@
                     <div class="breadcrumb_content">
                         <ul>
                             <li><a href="index.html">خانه</a></li>
-                            <li>جزئیات محصول</li>
+                            <li>جزئیات محصول </li>
+                            <li>{{ product.title }} </li>
                         </ul>
                     </div>
                 </div>
