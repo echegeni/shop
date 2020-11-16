@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
     <div class="off_canvars_overlay"></div>
     <div class="Offcanvas_menu">
         <div class="container">
@@ -265,16 +266,14 @@
                                 </div>
                                 <div class="categories_menu_toggle">
                                     <ul>
-                                        <li class="menu_item_children"><a href="#">لباس و پوشاک <i class="fa fa-angle-left"></i></a>
+                                        <li class="menu_item_children"><a href="#">{{ Category.title }} <i class="fa fa-angle-left"></i></a>
                                             <ul class="categories_mega_menu">
-                                                <li class="menu_item_children"><a href="#">لباس ها</a>
+                                            {% for category in category.children %}
                                                     <ul class="categorie_sub_menu">
-                                                        <li><a href="">زیر پیراهن</a></li>
-                                                        <li><a href="">عصرانه</a></li>
-                                                        <li><a href="">روزانه</a></li>
-                                                        <li><a href="">ورزشی</a></li>
+                                                        <li><a href="">{{ category.title }}</a></li>
                                                     </ul>
                                                 </li>
+                                            {% endfor %}
                                             </ul>
                                         </li>
                                     </ul>

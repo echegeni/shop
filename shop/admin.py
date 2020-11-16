@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
 from shop import models
-
+from mptt.admin import MPTTModelAdmin
 # Register your models here.
 admin.site.register(models.Category)
 admin.site.register(models.Tag)

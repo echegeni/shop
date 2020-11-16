@@ -14,7 +14,7 @@ from django.views.generic import (
 from django.views.generic.edit import FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.utils.encoding import uri_to_iri
-from .models import Product, OrderItem, Order, Category,Shop_name
+from .models import *
 from django.views.generic.base import ContextMixin
 from django.views.decorators.http import require_POST
 from . import forms
@@ -27,7 +27,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from parsiprozhe.settings import MERCHANT
 from logger import statistic
 from django.contrib import messages
-
 
 class FormContextMixin(ContextMixin):
     def get_context_data(self, *args, **kwargs):
@@ -130,7 +129,12 @@ class Home(TopSelMixin, RecentlyMixin, LatestMixin, FormContextMixin, ListView):
     model = Product
     template_name = "home.html"
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+#        context['category'] = category
+#        context['subcat'] = Subcat.objects.all()
+        return context
+ 
 def checkout(request):
     cart = Cart(request)
     if request.method == 'POST':
@@ -274,3 +278,4 @@ class LogoutUser(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         logout(self.request)
         return super().get_redirect_url(*args, **kwargs)
+
