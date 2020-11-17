@@ -95,3 +95,7 @@ class CommentForm(forms.ModelForm):
             'email': 'ایمیل',
             'comment': 'متن پیام'
         }
+        
+class SearchForm(forms.Form):
+    query = forms.CharField(max_length=100)
+    catid = forms.IntegerField()

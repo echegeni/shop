@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load static custom_tags%}
     <div class="off_canvars_overlay"></div>
     <div class="Offcanvas_menu">
         <div class="container">
@@ -285,7 +286,8 @@
                         </div>
                         <div class="column2 col-lg-6 ">
                             <div class="search_container">
-                                <form action="#">
+                                <form action="/search/" method="post">
+                                {% csrf_token %}
                                     <div class="search_box">
                                         <input placeholder="جستجوی محصول ..." type="text">
                                         <button type="submit">جستجو</button>

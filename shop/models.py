@@ -5,19 +5,9 @@ from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
 
 class Category(MPTTModel):
-    STATUS = (
-        ('True', 'True'),
-        ('False', 'False'),
-    )
-    parent = TreeForeignKey('self',blank=True, null=True ,related_name='children', on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
-    keywords = models.CharField(max_length=255)
-    description = models.TextField(max_length=255)
-    image=models.ImageField(blank=True,upload_to='images/')
-    status=models.CharField(max_length=10, choices=STATUS)
-    slug = models.SlugField(null=False, unique=True)
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
+    parent = TreeForeignKey('self',blank=True, null=True ,related_name='children', on_delete=models.CASCADE, verbose_name="فرزند")
+    title = models.CharField(max_length=50, verbose_name="عنوان")
+    slug = models.SlugField(null=False, unique=True, verbose_name="اسلاگ")
 
     def __str__(self):
         return self.title
@@ -35,6 +25,9 @@ class Category(MPTTModel):
             full_path.append(k.title)
             k = k.parent
         return ' / '.join(full_path[::-1])
+    class Meta:
+        verbose_name = 'دسته بندی'
+        verbose_name_plural = 'دسته بندی ها'
 
 
 

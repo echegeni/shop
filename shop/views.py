@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import (
     render,
     redirect,
@@ -9,7 +10,8 @@ from django.views.generic import (
     ListView,
     CreateView,
     DetailView,
-    RedirectView
+    RedirectView,
+    TemplateView
 )
 from django.views.generic.edit import FormView
 from django.views.generic.detail import SingleObjectMixin
@@ -27,6 +29,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from parsiprozhe.settings import MERCHANT
 from logger import statistic
 from django.contrib import messages
+from django.db.models import Avg, Count, Q, F
+from .forms import SearchForm
 
 class FormContextMixin(ContextMixin):
     def get_context_data(self, *args, **kwargs):
@@ -87,6 +91,7 @@ class ProductDisplay(FormContextMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = forms.CommentForm()
         context['comments'] = self.object.comment_set.filter(is_active=True)
+        context['category'] = Category.objects.all()
         return context
 
 
@@ -133,7 +138,8 @@ class Home(TopSelMixin, RecentlyMixin, LatestMixin, FormContextMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()
         return context
- 
+
+
 def checkout(request):
     cart = Cart(request)
     if request.method == 'POST':
@@ -278,3 +284,36 @@ class LogoutUser(RedirectView):
         logout(self.request)
         return super().get_redirect_url(*args, **kwargs)
 
+def search(request):
+    if request.method == 'POST': # check post
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query'] # get form input data
+            catid = form.cleaned_data['catid']
+            if catid==0:
+                products=Product.objects.filter(title__icontains=query)  #SELECT * FROM product WHERE title LIKE '%query%'
+            else:
+                products = Product.objects.filter(title__icontains=query,category_id=catid)
+
+            category = Category.objects.all()
+            context = {'products': products, 'query':query,
+                       'category': category }
+            return render(request, 'search_products.html', context)
+
+    return HttpResponseRedirect('/')
+
+def search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        products = Product.objects.filter(title__icontains=q)
+
+        results = []
+        for rs in products:
+            product_json = {}
+            product_json = rs.title +" > " + rs.category.title
+            results.append(product_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
