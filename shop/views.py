@@ -131,8 +131,7 @@ class Home(TopSelMixin, RecentlyMixin, LatestMixin, FormContextMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-#        context['category'] = category
-#        context['subcat'] = Subcat.objects.all()
+        context['category'] = Category.objects.all()
         return context
  
 def checkout(request):

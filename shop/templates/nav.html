@@ -265,17 +265,20 @@
                                     <h2 class="categori_toggle">دسته بندی ها</h2>
                                 </div>
                                 <div class="categories_menu_toggle">
+                                {% load mptt_tags %}
                                     <ul>
-                                        <li class="menu_item_children"><a href="#">{{ Category.title }} <i class="fa fa-angle-left"></i></a>
+                                    {% recursetree category %}
+                                        <li class="menu_item_children"><a href="#">{{ node.title }}<i class="fa fa-angle-left"></i></a>
+                                        {% if not node.is_leaf_node %}
                                             <ul class="categories_mega_menu">
-                                            {% for category in category.children %}
                                                     <ul class="categorie_sub_menu">
-                                                        <li><a href="">{{ category.title }}</a></li>
+                                                        <li><a href=""> {{ children }} </a></li>
                                                     </ul>
                                                 </li>
-                                            {% endfor %}
                                             </ul>
+                                        {% endif %}
                                         </li>
+                                    {% endrecursetree %}
                                     </ul>
                                 </div>
                             </div>

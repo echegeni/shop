@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'haystack',
     'category',
+    'mptt',
     'shop',
     'ckeditor',
     'logger',
