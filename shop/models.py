@@ -84,7 +84,7 @@ class Province(models.Model):
 
 class City(models.Model):
     title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
-    province = models.ForeignKey(Province, on_delete=models.CASCADE, verbose_name="استان")
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, verbose_name="شهر")
 
     def __str__(self):
         return self.title
@@ -92,11 +92,20 @@ class City(models.Model):
         verbose_name = 'شهر'
         verbose_name_plural = 'شهر ها'
 
+class Area(models.Model):
+    title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
+    province = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="استان")
+
+    def __str__(self):
+        return self.title
+    class Meta:
+        verbose_name = 'منطقه'
+        verbose_name_plural = 'منطقه ها'
+
 class Shop_name(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="عنوان فروشگاه")
     descriptions = models.CharField(verbose_name=("درباره فروشگاه"), max_length=500)
     slug = models.SlugField(max_length=100, unique=True, allow_unicode=True, verbose_name="اسلاگ")
-    products = models.ManyToManyField("shop.Product", verbose_name=("محصولات"))
 
     class Meta:
         verbose_name = ( "فروشگاه")
@@ -106,7 +115,8 @@ class Shop_name(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse( "shop_detail", args=[self.slug])
+        return reverse('shop-detail', args=[self.slug])
+
 
 class Product(models.Model):
     title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")

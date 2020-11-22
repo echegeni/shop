@@ -67,15 +67,10 @@ class ProductList(FormContextMixin, ListView):
     template_name = 'product_list.html'
     paginate_by = 12
     queryset = Product.objects.all()
-    
-class ShopproductList(FormContextMixin, ListView):
-    model = Product
-    template_name = 'shop_detail.html'
-    paginate_by = 12
-    queryset = Shop_name.objects.all()
-    def get_object(self, **kwargs):
-        slug = self.kwargs.get('slug')
-        return get_object_or_404(Shop_name, slug=uri_to_iri(slug))
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
 
 
 
@@ -268,12 +263,22 @@ class CategoryProductList(FormContextMixin, ListView):
         except Category.DoesNotExist:
             pass
         return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
 
 
 class SignUp(CreateView):
     template_name = 'registration/register.html'
     form_class = forms.RegisterForm
     success_url = reverse_lazy('login')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
+
+    
 
 
 @method_decorator(login_required, name='dispatch')
@@ -283,37 +288,22 @@ class LogoutUser(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         logout(self.request)
         return super().get_redirect_url(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
 
-def search(request):
-    if request.method == 'POST': # check post
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            query = form.cleaned_data['query'] # get form input data
-            catid = form.cleaned_data['catid']
-            if catid==0:
-                products=Product.objects.filter(title__icontains=query)  #SELECT * FROM product WHERE title LIKE '%query%'
-            else:
-                products = Product.objects.filter(title__icontains=query,category_id=catid)
 
-            category = Category.objects.all()
-            context = {'products': products, 'query':query,
-                       'category': category }
-            return render(request, 'search_products.html', context)
+class ShopDisplay(FormContextMixin, DetailView):
+    model = Shop_name
+    template_name = 'shop_detail.html'
+    def get_object(self, **kwargs):
+        slug = self.kwargs.get('slug')
+        return get_object_or_404(Shop_name, slug=uri_to_iri(slug))
 
-    return HttpResponseRedirect('/')
-
-def search_auto(request):
-    if request.is_ajax():
-        q = request.GET.get('term', '')
-        products = Product.objects.filter(title__icontains=q)
-
-        results = []
-        for rs in products:
-            product_json = {}
-            product_json = rs.title +" > " + rs.category.title
-            results.append(product_json)
-        data = json.dumps(results)
-    else:
-        data = 'fail'
-    mimetype = 'application/json'
-    return HttpResponse(data, mimetype)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        slug = self.kwargs.get('slug')
+        context['products'] = Shop_name.objects.get(slug=slug)
+        return context
