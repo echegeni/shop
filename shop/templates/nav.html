@@ -195,56 +195,17 @@
                         <div class="col-lg-3">
                             <div class="header_configure_area">
                                 <div class="mini_cart_wrapper">
-                                    <a href="javascript:void(0)">
+                                    <a href="{% url 'cart_detail' %}">
                                         <i class="fa fa-shopping-bag"></i>
-                                        <span class="cart_price"><span>152,000 تومان</span> <i class="ion-ios-arrow-down"></i></span>
-                                        <span class="cart_count">2</span>
-
                                     </a>
                                     <!--mini cart-->
                                     <div class="mini_cart">
-                                        <div class="mini_cart_inner">
-                                            <div class="cart_item">
-                                                <div class="cart_img">
-                                                    <a href="#"><img src="{% static 'assets/img/s-product/product.jpg' %}" alt=""></a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <a href="#">گوشی هوشمند سامسونگ A50</a>
-                                                    <p>تعداد: 1 × <span> 60,000 تومان </span></p>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="cart_item">
-                                                <div class="cart_img">
-                                                    <a href="#"><img src="{% static 'assets/img/s-product/product2.jpg' %}" alt=""></a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <a href="#">صندلی آشپزخانه پلاستیکی Nilper</a>
-                                                    <p>تعداد: 1 × <span> 60,000 تومان </span></p>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-										</div>
-										<div class="mini_cart_table">
-											<div class="cart_total">
-												<span>جمع اجزا:</span>
-												<span class="price">138,000 تومان</span>
-											</div>
-											<div class="cart_total mt-10">
-												<span>جمع کل:</span>
-												<span class="price">138,000 تومان</span>
-											</div>
-										</div>
                                         <div class="mini_cart_footer">
                                             <div class="cart_button">
-                                                <a href="cart.html">مشاهده سبد</a>
+                                                <a href="{% url 'cart_detail' %}">مشاهده سبد</a>
                                             </div>
                                             <div class="cart_button">
-                                                <a href="checkout.html">پرداخت</a>
+                                                <a href="{% url 'checkout' %}">پرداخت</a>
                                             </div>
 
                                         </div>

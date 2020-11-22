@@ -137,6 +137,7 @@ class Home(TopSelMixin, RecentlyMixin, LatestMixin, FormContextMixin, ListView):
 
 def checkout(request):
     cart = Cart(request)
+    category = Category.objects.all()
     if request.method == 'POST':
         form = forms.OrderCheckoutForm(request.POST)
         if form.is_valid():
@@ -153,7 +154,8 @@ def checkout(request):
     else:
         form = forms.OrderCheckoutForm()
     return render(request, 'checkout.html', {'cart': cart,
-                                             'form': form})
+                                             'form': form,
+                                             'category':category})
 
 
 client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
@@ -241,10 +243,11 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
+    category = Category.objects.all()
     for item in cart:
         item['update_count_from'] = forms.CartUpdateProductForm(initial={'count': item['count'],
                                                                    'update': True})
-    return render(request, 'cart.html', {'cart': cart})
+    return render(request, 'cart.html', {'cart': cart , 'category':category})
 
 
 class CategoryProductList(FormContextMixin, ListView):

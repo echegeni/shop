@@ -176,11 +176,6 @@ class Product(models.Model):
 
                                              verbose_name="محصولات مرتبط")
 
-    categories = models.ManyToManyField(
-        'category.Category',
-        help_text='Categorize this item.',
-        blank=True
-    )
     class Meta:
         ordering = ('-id',)
 
