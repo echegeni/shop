@@ -25,7 +25,7 @@
                         <div class="header_configure_area">
                             <div class="mini_cart_wrapper">
                                 <a href="javascript:void(0)">
-                                    <i class="fa fa-shopping-bag"></i>
+                                    <i class="fa fa-sign-in"></i>
                                     <span class="cart_price"><i class="ion-ios-arrow-down"></i></span>
                                     <span class="cart_count">2</span>
                                 </a>
@@ -194,24 +194,35 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="header_configure_area">
+                            {% if user.is_authenticated %}
                                 <div class="mini_cart_wrapper">
-                                    <a href="{% url 'cart_detail' %}">
-                                        <i class="fa fa-shopping-bag"></i>
+                                    <a href="{% url 'logout' %}">
+                                        خروج
+                                        <i class="fa fa-sign-in"></i>
+                                    </a>
+                                </div>
+
+                            {% else %}
+                                <div class="mini_cart_wrapper">
+                                    <a href="#">
+                                        ورود یا عضویت
+                                        <i class="fa fa-sign-in"></i>
                                     </a>
                                     <!--mini cart-->
                                     <div class="mini_cart">
                                         <div class="mini_cart_footer">
                                             <div class="cart_button">
-                                                <a href="{% url 'cart_detail' %}">مشاهده سبد</a>
+                                                <a href="{% url 'login' %}">ورود</a>
                                             </div>
                                             <div class="cart_button">
-                                                <a href="{% url 'checkout' %}">پرداخت</a>
+                                                <a href="{% url 'register' %}">عضویت</a>
                                             </div>
 
                                         </div>
                                     </div>
                                     <!--mini cart end-->
                                 </div>
+                            {% endif %}  
                             </div>
                         </div>
                     </div>
@@ -259,11 +270,7 @@
                         </div>
                         <div class="column3 col-lg-3 col-md-6">
                             <div class="header_bigsale">
-                            {% if user.is_authenticated %}
                                 <a href="{% url 'cart_detail' %}">سبد خرید</a>
-                            {% else %}
-                                <a href="{% url 'login' %}">ورود</a>
-                            {% endif %}
                             </div>
                         </div>
                     </div>
