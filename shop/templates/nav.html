@@ -230,7 +230,7 @@
                                 {% load mptt_tags %}
                                     <ul>
                                     {% recursetree category %}
-                                        <li class="menu_item_children"><a href="#">{{ node.title }}<i class="fa fa-angle-left"></i></a>
+                                        <li class="menu_item_children"><a href="{{ node.get_absolute_url }}">{{ node.title }}<i class="fa fa-angle-left"></i></a>
                                         {% if not node.is_leaf_node %}
                                             <ul class="categories_mega_menu">
                                                     <ul class="categorie_sub_menu">

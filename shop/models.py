@@ -247,19 +247,30 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    shop = models.ForeignKey(Shop_name, blank=True, null=True, on_delete=models.CASCADE)
     count = models.IntegerField()
     price = models.DecimalField(max_digits=11, decimal_places=0, default=0)
 
     def __str__(self):
-        return 'Create Time:%s Order id:%s Product:%s Name:%s Mobile:%s' % ( self.order.order_date, self.order, self.product, self.order.family, self.order.mobile)
+        return ' Product:%s Name:%s ' % (self.product, self.order.family)
 
     def get_cost(self):
         return self.price * self.count
-    
+    get_cost.allow_tags = True
     class Meta:
         verbose_name = 'موارد سفارش'
         verbose_name_plural = 'موارد سفارشات'
 
+class Accounting(models.Model):
+    shop = models.ForeignKey(Shop_name, verbose_name=("فروشگاه"), on_delete=models.CASCADE)
+    order = models.ForeignKey(OrderItem , on_delete=models.CASCADE)
+    checkout = models.BooleanField(null=True)
+    ammount = models.DecimalField(max_digits=11, decimal_places=0, default=0)
+    def __str__(self):
+        return self.shop.name
+    class Meta:
+        verbose_name = 'حسابداری'
+        verbose_name_plural = 'حسابداری'
 
 class PaymentLog(models.Model):
     order = models.ForeignKey(Order, on_delete=models.DO_NOTHING, verbose_name="سفارش")

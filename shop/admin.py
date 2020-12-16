@@ -22,12 +22,23 @@ class ProductAdminForm(forms.ModelForm):
 class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
 
+class orderitem(admin.ModelAdmin):
+    list_filter = ('shop','order')
+    list_display = ('order','shop','get_cost')
+
+class Accounting(admin.ModelAdmin):
+    list_display = ('shop','order')
+    def sumsell(self, obj,OrderItem):
+        price = models.OrderItem.objects.get()
+            
+
 
 admin.site.register(models.Category,DraggableMPTTAdmin)
 admin.site.register(models.Product, ProductAdmin)
 admin.site.register(models.FileGallery)
 admin.site.register(models.Order)
 admin.site.register(models.PaymentLog)
-admin.site.register(models.OrderItem)
+admin.site.register(models.OrderItem,orderitem)
 admin.site.register(models.Comment)
 admin.site.register(models.Shop_name)
+admin.site.register(models.Accounting,Accounting)

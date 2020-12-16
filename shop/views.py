@@ -72,6 +72,20 @@ class ProductList(FormContextMixin, ListView):
         context['category'] = Category.objects.all()
         return context
 
+class category_detail(FormContextMixin, DetailView):
+    model = Category
+    template_name = 'category_detail.html'
+
+    def get_object(self, **kwargs):
+        slug = self.kwargs.get('slug')
+        return get_object_or_404(Category, slug=uri_to_iri(slug))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        slug = self.kwargs.get('slug')
+        context['products'] = Category.objects.get(slug=slug)
+        return context
 
 
 class ProductDisplay(FormContextMixin, DetailView):
