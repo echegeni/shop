@@ -12,4 +12,3 @@ def my_slice(input):
     else:
         return input
 
-

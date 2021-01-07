@@ -142,7 +142,6 @@ class AuthorDetail(View):
 class Home(TopSelMixin, RecentlyMixin, LatestMixin, FormContextMixin, ListView):
     model = Product
     template_name = "home.html"
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()
@@ -323,4 +322,20 @@ class ShopDisplay(FormContextMixin, DetailView):
         context['category'] = Category.objects.all()
         slug = self.kwargs.get('slug')
         context['products'] = Shop_name.objects.get(slug=slug)
+        return context
+
+class search(ListView):
+    model = Product
+    template_name = "search_products.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Product.objects.filter(
+            Q(title__icontains=query)| Q(decsription__icontains=query)
+        )
+        return object_list
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
         return context

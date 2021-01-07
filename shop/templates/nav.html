@@ -258,10 +258,9 @@
                         </div>
                         <div class="column2 col-lg-6 ">
                             <div class="search_container">
-                                <form action="/search/" method="post">
-                                {% csrf_token %}
+                                <form action="{% url 'search' %}" method='get' >
                                     <div class="search_box">
-                                        <input placeholder="جستجوی محصول ..." type="text">
+                                        <input name="q" placeholder="جستجوی محصول ..." type="text">
                                         <button type="submit">جستجو</button>
                                     </div>
                                 </form>
