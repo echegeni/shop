@@ -117,6 +117,22 @@ class Shop_name(models.Model):
     def get_absolute_url(self):
         return reverse('shop-detail', args=[self.slug])
 
+class page(models.Model):
+    title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
+    slug = models.SlugField(max_length=100, unique=True, allow_unicode=True, verbose_name="اسلاگ")
+    decsription = models.TextField(max_length=300,verbose_name="مختصر توضیحات")
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="نویسنده")
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('page-detail', args=[self.slug])
+
+    class Meta:
+        verbose_name = 'برگه'
+        verbose_name_plural = 'برگه ها'
+
 
 class Product(models.Model):
     title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
@@ -321,3 +337,27 @@ class Comment(models.Model):
         verbose_name = 'نظر'
         verbose_name_plural = 'نظرات'
 
+class slider(models.Model):
+    title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
+    title2 = models.CharField(max_length=100, blank=True, null=True, unique=True, verbose_name="عنوان دوم")
+    link = models.CharField(max_length=100, unique=True, verbose_name="لینک")
+    pic = models.ImageField(upload_to='upload/images', default='upload/images/no-img.jpg', verbose_name="تصویر")
+
+    class Meta:
+        verbose_name = 'اسلایدر'
+        verbose_name_plural = 'اسلایدرها'
+
+    def __str__(self):
+        return self.title
+
+class banner(models.Model):
+    title = models.CharField(max_length=100, unique=True, verbose_name="عنوان")
+    link = models.CharField(max_length=100, unique=True, verbose_name="لینک")
+    pic = models.ImageField(upload_to='upload/images', default='upload/images/no-img.jpg', verbose_name="تصویر")
+
+    class Meta:
+        verbose_name = 'بنر'
+        verbose_name_plural = 'بنرها'
+
+    def __str__(self):
+        return self.title

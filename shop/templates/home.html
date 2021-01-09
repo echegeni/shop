@@ -6,49 +6,21 @@
     <!--slider area start-->
     <section class="slider_section slider_s_three mb-60 mt-20">
         <div class="slider_area slider3_carousel owl-carousel">
-            <div class="single_slider d-flex align-items-center" data-bgimg="{% static 'assets/img/slider/slider9.jpg' %}">
+            {% for slide in slider %}
+            <div class="single_slider d-flex align-items-center" data-bgimg="{{slide.pic.url}}">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
                             <div class="slider_content slider_c_three color_white">
-                                <h3>کلکسیون جدید</h3>
-                                <h1>محصولات جدید <br> مدل های جدید گوشی 2019</h1>
-								<p class="less-space">تخفیف <span> 30 درصد</span> این هفته</p>
-								<a class="button" href="shop.html">هم اکنون بخرید</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="single_slider d-flex align-items-center" data-bgimg="{% static 'assets/img/slider/slider10.jpg' %}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="slider_content slider_c_three color_white">
-                                <h3>کلکسیون جدید</h3>
-                                <h1>مخصوص تابستان <br> غذاهای گیاهی ارگانیک 2019</h1>
-								<p class="less-space">تخفیف <span> 30 درصد</span> این هفته</p>
-								<a class="button" href="shop.html">هم اکنون بخرید</a>
+                                <h3>{{slide.title2}}</h3>
+                                <h1> {{slide.title}}</h1>
+								<a class="button" href="{{slide.link}}">هم اکنون بخرید</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single_slider d-flex align-items-center" data-bgimg="{% static 'assets/img/slider/slider11.jpg' %}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="slider_content slider_c_three color_white">
-                                <h3>کلکسیون جدید</h3>
-                                <h1>کلکسیون جدید <br> لباس های ورزشی مردانه</h1>
-								<p class="less-space">تخفیف <span> 30 درصد</span> این هفته</p>
-								<a class="button" href="shop.html">هم اکنون بخرید</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
     <!--slider area end-->
@@ -108,54 +80,20 @@
     </div>
     <!--shipping area end-->
 
-    <!--banner area start-->
-    <div class="banner_area banner_style2 mb-60">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <figure class="single_banner">
-                        <div class="banner_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/bg/banner6.jpg' %}" alt=""></a>
-                        </div>
-                    </figure>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <figure class="single_banner">
-                        <div class="banner_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/bg/banner7.jpg' %}" alt=""></a>
-                        </div>
-                    </figure>
-                </div>
-                <div class="col-lg-3 col-md-3">
-                    <figure class="single_banner">
-                        <div class="banner_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/bg/banner8.jpg' %}" alt=""></a>
-                        </div>
-                    </figure>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--banner area end-->
 
     <!--banner area start-->
     <div class="banner_area banner_three_bottom mb-60">
         <div class="container">
             <div class="row">
+            {% for banner in banner %}
                 <div class="col-lg-6 col-md-6">
                     <figure class="single_banner">
                         <div class="banner_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/bg/banner4.jpg' %}" alt=""></a>
+                            <a href="{{banner.link}}"><img src="{{banner.pic.url}}" alt=""></a>
                         </div>
                     </figure>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <figure class="single_banner">
-                        <div class="banner_thumb">
-                            <a href="shop.html"><img src="{% static 'assets/img/bg/banner5.jpg' %}" alt=""></a>
-                        </div>
-                    </figure>
-                </div>
+            {% endfor %}
             </div>
         </div>
     </div>

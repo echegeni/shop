@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li>{{page.title}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <div class="faq_page_bg">
+        <div class="container">
+            <!--faq area start-->
+            <div class="faq_content_area">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="faq_content_wrapper">
+                            <h4>{{page.title}}</h4>
+                            <p>{{page.decsription}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--faq area end-->
+
+        </div>
+    </div>
+
+{% endblock content %}

@@ -13,6 +13,7 @@ if settings.DEBUG:
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
+    path('page/<str:slug>/', views.PageDisplay.as_view(), name='page-detail'),
     path('product/', views.ProductList.as_view(), name='product'),
     path('product/<str:slug>/', views.AuthorDetail.as_view(), name='product-detail'),
     path('category/<str:slug>/', views.category_detail.as_view(), name='category_detail'),

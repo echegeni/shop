@@ -145,6 +145,8 @@ class Home(TopSelMixin, RecentlyMixin, LatestMixin, FormContextMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()
+        context['slider'] = slider.objects.all()
+        context['banner'] = banner.objects.all()
         return context
 
 
@@ -335,6 +337,19 @@ class search(ListView):
         )
         return object_list
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
+
+class PageDisplay(FormContextMixin, DetailView):
+    model = page
+    template_name = 'page_detail.html'
+
+    def get_object(self, **kwargs):
+        slug = self.kwargs.get('slug')
+        return get_object_or_404(page, slug=uri_to_iri(slug))
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()
