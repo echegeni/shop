@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'shop',
     'ckeditor',
     'logger',
-    'contact',
-    'googlesearch'
+    'contact'
 ]
 
 MIDDLEWARE = [
